@@ -16,12 +16,12 @@ export default async function HomePage() {
     return (
       <main style={{ padding: 32 }}>
         <h1>Restaurant Marketing Intelligence</h1>
-        <p style={{ color: 'red' }}>
-          Could not load businesses: {error.message}
-        </p>
+        <p style={{ color: 'red' }}>Could not load businesses: {error.message}</p>
       </main>
     );
   }
+
+  const count = businesses ? businesses.length : 0;
 
   return (
     <main style={{ padding: 32, fontFamily: 'system-ui' }}>
@@ -41,26 +41,18 @@ export default async function HomePage() {
       >
         + Add Business
       </a>
-      <p>Managed businesses ({businesses?.length ?? 0})</p>
+      <p>Managed businesses ({count})</p>
       <ul>
-        {(businesses as Business[] | null)?.map((b) => (
+        {businesses && (businesses as Business[]).map((b) => (
           <li key={b.id}>
-            <strong>{b.name}</strong> — {b.cuisine_type ?? 'cuisine not set'}
+            <strong>{b.name}</strong> - {b.cuisine_type ? b.cuisine_type : 'cuisine not set'}
             {b.website_url && (
-              <>
-                {' '}
-                —{' '}
-                <a href={b.website_url} target="_blank" rel="noreferrer">
-                  website
-                </a>
-              </>
+              <span> - <a href={b.website_url} target="_blank" rel="noreferrer">website</a></span>
             )}
           </li>
         ))}
       </ul>
-      {(!businesses || businesses.length === 0) && (
-        <p>No businesses yet. Add one via Supabase or the seed script.</p>
-      )}
+      {count === 0 && <p>No businesses yet. Add one via Supabase or the seed script.</p>}
     </main>
   );
 }
