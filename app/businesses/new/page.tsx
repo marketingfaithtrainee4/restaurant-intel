@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-const fieldStyle: React.CSSProperties = {
+const fieldStyle = {
   display: 'block',
   width: '100%',
   maxWidth: 480,
@@ -12,15 +12,15 @@ const fieldStyle: React.CSSProperties = {
   border: '1px solid #ccc',
   borderRadius: 6,
   fontSize: 14,
-};
+} as const;
 
-const labelStyle: React.CSSProperties = {
+const labelStyle = {
   display: 'block',
   fontWeight: 600,
   marginBottom: 4,
   marginTop: 12,
   fontSize: 14,
-};
+} as const;
 
 export default function NewBusinessPage() {
   const router = useRouter();
@@ -47,7 +47,7 @@ export default function NewBusinessPage() {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
     setSubmitting(true);
     setError(null);
