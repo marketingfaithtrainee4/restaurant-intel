@@ -26,6 +26,21 @@ export default async function HomePage() {
   return (
     <main style={{ padding: 32, fontFamily: 'system-ui' }}>
       <h1>Restaurant Marketing Intelligence</h1>
+      
+        href="/businesses/new"
+        style={{
+          display: 'inline-block',
+          marginBottom: 20,
+          padding: '10px 20px',
+          background: '#111',
+          color: '#fff',
+          borderRadius: 6,
+          textDecoration: 'none',
+          fontSize: 14,
+        }}
+      >
+        + Add Business
+      </a>
       <p>Managed businesses ({businesses?.length ?? 0})</p>
       <ul>
         {(businesses as Business[] | null)?.map((b) => (
